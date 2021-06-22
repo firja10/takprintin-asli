@@ -22,6 +22,14 @@ class Pembeli extends Model
         return $this->belongsTo(Toko::class);
     }
 
+    public function user()
+    {
+        # code...
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    
+
 
 
 }

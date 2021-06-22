@@ -76,8 +76,8 @@
 
 
                                   <div class="form-group">
-                                      <label for="fileprint">File Untuk Dicetak</label>
-                                      <input type="file" class="form-control"  id="fileprint" name = "fileprint" >
+                                      <label for="file">File Untuk Dicetak</label>
+                                      <input type="file" class="form-control"  id="file" name = "file" >
                                     </div>
 
 

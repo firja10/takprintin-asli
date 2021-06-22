@@ -16,7 +16,7 @@ class AddFkToPembelis extends Migration
         Schema::table('pembelis', function (Blueprint $table) {
             //
 
-            $table->integer('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->after('progress')->nullable();
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
 
@@ -33,7 +33,7 @@ class AddFkToPembelis extends Migration
         Schema::table('pembelis', function (Blueprint $table) {
             //
             // $table->dropForeign(['user_id']);
-            $table->dropForeign('lists_user_id_foreign');
+            $table->dropForeign('user_id');
             $table->dropColumn(['user_id']);
 
         });

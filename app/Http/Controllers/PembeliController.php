@@ -72,7 +72,7 @@ class PembeliController extends Controller
         //     'nama_toko' => $request['nama_toko'],
         //     'kategori' => $request['kategori'],
         //     'email' => $request['email'],
-        //     'telepon' => $request['telepon'],
+        //     'email' => $request['email'],
         //     'file' => $filename,
 
         // ]);
@@ -81,9 +81,46 @@ class PembeliController extends Controller
 
 
 
-        Pembeli::create($request->all());
+        // Pembeli::create($request->all());
 
-        return redirect('keranjang')->with('success','Kampus Sudah Terdaftar');
+        // return redirect('keranjang')->with('success','Kampus Sudah Terdaftar');
+
+
+
+        $data = new Pembeli;
+
+        if($request->hasFile('file')){
+            $filename = $request["file"]->getClientOriginalName();
+
+            if( $data->file ){
+                Storage::delete('/public/assets/img/'.Auth::user()->file);
+            }
+            $request["file"]->storeAs('Pembelis', $filename, 'public');
+        }else{
+            $filename=$data->file;
+        }
+        
+        $data->nama_file = $request['nama_file'];
+        $data->email = $request['email'];
+        $data->kategori = $request['kategori'];
+        $data->jeni_kertas = $request['jeni_kertas'];
+        $data->ukuran_kertas = $request['ukuran_kertas'];
+        $data->catatan = $request['catatan'];
+        $data->jumlah_halaman = $request['jumlah_halaman'];
+        $data->nama_toko = $request['nama_toko'];
+        $data->harga = $request['harga'];
+        $data->pembayaran = $request['pembayaran'];
+        $data->status_pembayaran = $request['status_pembayaran'];
+        $data->bukti_pembayaran = $request['bukti_pembayaran'];
+        $data->progress = $request['progress'];
+        $data->file = $filename;
+        $data->user_id = Auth::id();
+        $data->save();
+
+        Alert::success('Berhasil!', 'Pembeli baru berhasil ditambahkan!');
+
+        return redirect('/keranjang');
+        // ->with('success', 'Pembeli baru berhasil ditambahkan!');
 
 
 
@@ -96,7 +133,7 @@ class PembeliController extends Controller
         //     'jenis_kertas' => 'required',
         //     'email' => 'required',
         //     'kategori' => 'required',
-        //     'telepon' => 'required',
+        //     'email' => 'required',
         //     'file' => 'required|file|mimes:jpeg,png,pdf,jpg,gif,svg|max:2048',
         //     'nama_toko' => 'required',
         //     ]);
@@ -113,7 +150,7 @@ class PembeliController extends Controller
         //     $insert['jenis_kertas'] = $request->get('jenis_kertas');
         //     $insert['email'] = $request->get('email');
         //     $insert['kategori'] = $request->get('kategori');
-        //     $insert['telepon'] = $request->get('telepon');
+        //     $insert['email'] = $request->get('email');
         //     $insert['nama_toko'] = $request->get('nama_toko');
 
         //    Pembeli::create($request->all());

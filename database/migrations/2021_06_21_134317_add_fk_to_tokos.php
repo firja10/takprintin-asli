@@ -15,7 +15,8 @@ class AddFkToTokos extends Migration
     {
         Schema::table('tokos', function (Blueprint $table) {
             //
-            $table->integer('pembeli_id')->nullable();
+            $table->unsignedBigInteger('pembeli_id')->after('waktu_tutup')->nullable();
+            // $table->bigInteger('pembeli_id')->nullable();
             $table->foreign('pembeli_id')->references('id')->on('pembelis')
             ->onDelete('cascade')->onUpdate('cascade');
 
