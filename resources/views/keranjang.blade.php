@@ -1,48 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>TAKPRINTIN - Solusi Terbaik Untuk Anda</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{{asset('css/styles.css')}}" rel="stylesheet" />
-    </head>
-    <body id="page-top">
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg  text-uppercase fixed-top" id="mainNav" style = "background-color:white;">
-            <div class="container">
-                <img src="{{asset('assets/img/logotakprint.png')}}" alt="" class="navbar-brand" style = "width:70px;" >
-                <a class="navbar-brand" href="#page-top" style = "font-size:40px;margin-left:5px; color:black;">TAKPRINTIN</a>
-
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">Beranda</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Pemesanaan</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Keranjang <sup><?php $count = DB::table('pembelis')->count();
-                            echo $count;
-?></sup> </a></li>
-
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Keranjang</a></li>
-
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact">Kotak</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+@extends('template')
+@section('content')
         <!-- Masthead-->
         <header class="masthead  text-white text-center" style = " background-color:#4696e6;">
 
-            @foreach ( $pembelis as $pemesan )
+            @foreach ( $data as $pemesan )
+             
 
                 <br>
                 <br>
@@ -91,34 +53,69 @@
                                     <br>
                                     <br>
 
-                                    @if($pemesan->file == NULL)
+                                    @if($pemesan->file == NULL )
 
 
                                   <strong><a href="{{route('keranjangspesifik', $pemesan->id)}}" class = "btn btn-warning" style = "border-radius:100px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">Anda Belum Upload File</a></strong>
                                     <br>
                                     <h3 style = "color:black"> <strong>Total : {{$pemesan->harga}}</strong> </h3>
-                                    @elseif($pemesan->file != NULL && $pemesan->kategori == 'BnW')
+                                    @elseif($pemesan->file != NULL && $pemesan->status_pembayaran == 0)
 
+                                    <?php 
+                                    
+                                    // $pisah = explode(" - ", $pemesan->jenis_kertas);
+                                    // $pisah2 = array_reverse($pisah);
+                                    // $per_lembar = floatval($pisah2[0]);
+                                    // $pangaos = $pemesan->jumlah_halaman;
+                                    // $total = number_format($pangaos*$per_lembar)."<br>";
+                                     
+                                    
+                                    
+                                    ?>
+    
+                                    <h3 style = "color:black"> <strong> Rp. {{ $pemesan->harga }}</strong> </h3>
                                     <form action="{{route('pembeli.destroy', $pemesan->id)}}" method = "POST" >
                                         @csrf
                                         @method('DELETE')
 
                                     <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Batalkan</button>
                                     <br>
-                                    <h3 style = "color:black"> <strong>Total : Rp.10.000</strong> </h3>
+                                    </form>
 
-                                    @elseif($pemesan->file != NULL && $pemesan->kategori == 'Warna')
-                                    <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Batalkan</button>
+
+
+                                    <a href = "{{route('rincianspesifik', $pemesan->id)}}" class = "btn btn-success" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Rincian Pembayaran</a>
+
+                                    @elseif($pemesan->file != NULL && $pemesan->status_pembayaran == 1)
+                                    <h3 style = "color:black"> <strong> Rp. {{ $pemesan->harga }}</strong> </h3>
+                                    <a href = "{{route('konfirmasipembayaran', $pemesan->id)}}" class = "btn btn-warning" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Lihat Proses Verifikasi Pembayaran</a>
+                                    
+                                    @elseif($pemesan->progress == NULL && $pemesan->status_pembayaran == 2)
+                                    <h3 style = "color:black"> <strong> Rp. {{ $pemesan->harga }}</strong> </h3>
+                                    <a href = "{{route('progressproduk', $pemesan->id)}}" class = "btn btn-dark" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Pembayaran Selesai, Lihat progres</a>
+                                    <form action="{{route('pembeli.destroy', $pemesan->id)}}" method = "POST" >
+                                        @csrf
+                                        @method('DELETE')
+
+                                    <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Hapus Order</button>
                                     <br>
-                                    <h3 style = "color:black"> <strong>Total : Rp.12.000</strong> </h3>
+                                    </form>
+
+                                    @elseif($pemesan->progress == 2 && $pemesan->status_pembayaran == 2)
+                                    <h3 style = "color:black"> <strong> Rp. {{ $pemesan->harga }}</strong> </h3>
+                                    <a href = "" class = "btn btn-dark" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Transaksi Selesai</a>
+                                    <form action="{{route('pembeli.destroy', $pemesan->id)}}" method = "POST" >
+                                        @csrf
+                                        @method('DELETE')
+
+                                    <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Hapus Order</button>
+                                    <br>
+                                    </form>
 
                                     @endif
 
 
-                                    </form>
-
-                                    <a href = "{{route('rincianspesifik', $pemesan->id)}}" class = "btn btn-success" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Rincian Pembayaran</a>
-
+                                    
 
 
 
@@ -143,7 +140,7 @@
 
             </div>
 
-
+ 
             @endforeach
         </header>
 
@@ -185,44 +182,4 @@
         </footer>
 
 
-
-        <!-- Copyright Section-->
-        <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; TAKPRINTIN 2021</small></div>
-        </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="{{asset('js/scripts.js')}}"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
-</html>
+@endsection

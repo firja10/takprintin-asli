@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>TAKRINT.IN | @yield('judul')</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -33,7 +33,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{asset('assets/img/logotakprint.png')}}" alt="logotakprint" height="60" width="60">
   </div>
 
   <!-- Navbar -->
@@ -61,8 +61,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+      <img src="{{asset('assets/img/logotakprint.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">TAKPRINT.IN</span>
     </a>
 
     <!-- Sidebar -->
@@ -102,7 +102,7 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('/adminhome')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                Halaman Home
@@ -112,28 +112,28 @@
 
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('/admin/informasi-pembeli')}}" class="nav-link">
               <i class="nav-icon fas fa-graduation-cap"></i>
               <p>
-                Informasi Kampus
+                Informasi Pembeli
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('/admin/informasi-progress')}}" class="nav-link">
               <i class="nav-icon fas fa-atom"></i>
               <p>
-                Informasi Jurusan
+                Informasi Progress
               </p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{url('/admin/informasi-toko')}}" class="nav-link">
               <i class="nav-icon fas fa-book-reader"></i>
               <p>
-               Artikel Blog
+               Informasi Toko
               </p>
             </a>
           </li>
@@ -142,7 +142,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user-graduate"></i>
               <p>
-               Artikel Bea/Magang
+              Informasi User
               </p>
             </a>
           </li>

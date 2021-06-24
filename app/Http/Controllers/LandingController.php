@@ -7,10 +7,30 @@ use App\Models\Toko;
 use App\Models\Pembeli;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Kertas;
 
 
 class LandingController extends Controller
 {
+
+
+
+public function index()
+    {
+        //
+                //
+  $pembelis = Pembeli::all();
+                # code...
+  return view('admin.pembeli',compact('pembelis'));
+
+
+    }
+
+
+
+
 
 
     public function landing()
@@ -102,8 +122,10 @@ class LandingController extends Controller
     {
         # code...
 
+        $kertas = new Kertas;
         $tokos = Toko::findOrFail($id);
-        return view('pemesananspesifik', compact('tokos'));
+        $data = $kertas->where('toko_id', $id)->get();
+        return view('pemesananspesifik', compact('tokos','data'));
     }
 
 
@@ -111,8 +133,22 @@ class LandingController extends Controller
     {
         # code...
 
-        $pembelis = Pembeli::all();
-        return view('keranjang', compact('pembelis'));
+        // $users = User::get();
+        // $pembelis= DB::table('pembelis')->where('user_id', '=', $users->id);
+        // $pembelis = Pembeli::all();
+
+        // return view('keranjang', compact('pembelis'));
+
+        // $user = User::get();
+
+        // return view('keranjang', compact('pembelis'));
+
+        $pembelis = new Pembeli;
+        $user_id = Auth::id();
+        $data = $pembelis->where('user_id', $user_id)->get();
+        return view('keranjang', compact('data'));
+
+
     }
 
 
@@ -121,6 +157,8 @@ class LandingController extends Controller
         # code...
 
         $pembelis = Pembeli::findOrFail($id);
+        // $toko_id = Toko::id()
+
         return view('keranjangspesifik', compact('pembelis'));
     }
 
@@ -141,6 +179,7 @@ class LandingController extends Controller
     $pembelis = Pembeli::where('id', $id)->update([
 
             'pembayaran' => $request['pembayaran'],
+            'status_pembayaran' => 0,
 
         ]);
 
@@ -162,6 +201,230 @@ class LandingController extends Controller
     }
 
 
+
+
+
+    public function indexpembeli()
+    {
+        //
+                //
+  $pembelis = Pembeli::all();
+                # code...
+  return view('admin.pembeli',compact('pembelis'));
+
+
+    }
+
+
+
+    
+    public function updatepembayaran(Request $request, Pembeli $pembelis, $id)
+    {
+
+
+        if($request->hasFile('bukti_pembayaran')){
+            $bukti_bayar = $request["bukti_pembayaran"]->getClientOriginalName();
+
+            if( Pembeli::find($id)->bukti_pembayaran ){
+                Storage::delete('/public/storage/Pembeli/'.Pembeli::find($id)->bukti_pembayaran);
+            }
+            $request["bukti_pembayaran"]->storeAs('Pembeli', $bukti_bayar, 'public');
+        }else{
+            $bukti_bayar=Pembeli::find($id)->bukti_pembayaran;
+        }
+
+
+    $pembelis = Pembeli::where('id', $id)->update([
+
+            'bukti_pembayaran' => $bukti_bayar,
+            'status_pembayaran' => 1,
+
+        ]);
+
+        return redirect('pembayaran/'.$id)->with('update-pembeli','Data Berhasil Terupdate');
+
+
+
+    }
+
+
+
+
+
+
+
+    public function updateadminpembayaran(Pembeli $pembelis, $id)
+    {
+
+
+
+    $pembelis = Pembeli::where('id', $id)->update([
+
+            'status_pembayaran' => 2,
+
+        ]);
+
+        return redirect('admin/informasi-pembeli')->with('update-pembeli','Data Berhasil Terupdate');
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+    public function Editpembayaran(Pembeli $pembelis, $id)
+    {
+
+
+        $pembelis = Pembeli::findOrFail($id);
+        // $toko_id = Toko::id()
+
+        return view('upload-pembayaran', compact('pembelis'));
+
+    }
+
+
+    
+    public function progressproduk(Pembeli $pembelis, $id)
+    {
+
+
+        $pembelis = Pembeli::findOrFail($id);
+        // $toko_id = Toko::id()
+
+        return view('progress', compact('pembelis'));
+
+    }
+
+
+    public function updateprogress(Request $request, Pembeli $pembelis, $id)
+    {
+
+        if($request->hasFile('bukti_progress')){
+            $bukti_progressan = $request["bukti_progress"]->getClientOriginalName();
+
+            if( Pembeli::find($id)->bukti_progress ){
+                Storage::delete('/public/storage/Pembeli/'.Pembeli::find($id)->bukti_progress);
+            }
+            $request["bukti_progress"]->storeAs('Pembeli', $bukti_progressan, 'public');
+        }else{
+            $bukti_progressan=Pembeli::find($id)->bukti_progress;
+        }
+
+
+        $pembelis = Pembeli::where('id', $id)->update([
+            // 'progress' => 0,
+            'progress' => 1,
+            'bukti_progress' => $bukti_progressan,
+            
+
+        ]);
+
+        return redirect('progress/'.$id)->with('update-pembeli','Data Berhasil Terupdate');
+    }
+
+
+
+    public function verifprogress(Request $request, Pembeli $pembelis, $id)
+    {
+
+
+        $pembelis = Pembeli::where('id', $id)->update([
+            'progress' => 2,
+            
+
+        ]);
+
+        return redirect('admin/informasi-progress')->with('update-pembeli','Data Berhasil Terupdate');
+    }
+
+
+
+
+
+    public function editrating(Pembeli $pembelis, $id)
+    {
+
+        $pembelis = Pembeli::findOrFail($id);
+        // $toko_id = Toko::id()
+
+        return view('berirating', compact('pembelis'));
+
+    }
+
+
+
+    public function updaterating(Request $request, Pembeli $pembelis, $id)
+    {
+
+        $pembelis = Pembeli::where('id', $id)->update([
+            'bintang_rating' => $request['bintang_rating'],
+            
+
+        ]);
+
+        return redirect('pemberian-rating/'.$id)->with('update-pembeli','Data Berhasil Terupdate');
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function kumpulanprogress()
+    {
+        //
+                //
+  $pembelis = Pembeli::all();
+//   $user_id = Auth::id();
+//   $data = $pembelis->where('user_id', $user_id)->get();
+
+  return view('admin.progress',compact('pembelis'));
+
+
+    }
+
+
+    public function daftaruser()
+    {
+        //
+                //
+  $user = User::all();
+//   $user_id = Auth::id();
+//   $data = $pembelis->where('user_id', $user_id)->get();
+
+  return view('admin.daftar-user',compact('user'));
+
+
+    }
+
+
+
+    public function jadikanadmin(Request $request, User $user, $id)
+    {
+
+        $user = User::where('id', $id)->update([
+            'is_admin' => 1,
+            
+
+        ]);
+
+        return redirect('admin/daftar-user')->with('update-pembeli','Data Berhasil Terupdate');
+
+    }
 
 
 

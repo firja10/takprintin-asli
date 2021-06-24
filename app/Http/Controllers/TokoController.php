@@ -97,6 +97,20 @@ class TokoController extends Controller
             $filename=Toko::find($id)->lambang_toko;
         }
 
+        $waktu_muka = $request['waktu_buka'];
+        $waktu_nutup = $request['waktu_tutup'];
+        $kondisi = $request['open'];
+        $waktu_default = date('H:i:s');
+
+
+        if($waktu_nutup < $waktu_default && $waktu_muka > $waktu_default ){
+            $kondisi = "close";
+        }
+        else
+        {
+            $kondisi = "open";
+        }
+
 
 
         $tokos = Toko::where('id', $id)->update([
@@ -105,7 +119,8 @@ class TokoController extends Controller
             'jenis_kertas' => $request['jenis_kertas'],
             'ukuran_kertas' => $request['ukuran_kertas'],
             'harga' => $request['harga'],
-            'open' => $request['open'],
+            // 'open' => $request['open'],
+            'open' => $kondisi,
             'waktu_buka' => $request['waktu_buka'],
             'waktu_tutup' => $request['waktu_tutup'],
             'lambang_toko' => $filename

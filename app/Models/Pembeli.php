@@ -25,7 +25,8 @@ class Pembeli extends Model
     public function user()
     {
         # code...
-        return $this->belongsTo('App\User', 'user_id');
+        // return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 
     

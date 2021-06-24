@@ -15,8 +15,9 @@ class AddFkToPembelis extends Migration
     {
         Schema::table('pembelis', function (Blueprint $table) {
             //
-
+                
             $table->unsignedBigInteger('user_id')->after('progress')->nullable();
+            // $table->bigIncrements('user_id')->after('progress')->nullable();
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')->onUpdate('cascade');
 

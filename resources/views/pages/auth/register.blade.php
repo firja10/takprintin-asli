@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TAKPRINTIN | Log in</title>
+  <title>TAKPRINTIN | Register</title>
 
   <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
   <!-- Google Font: Source Sans Pro -->
@@ -18,7 +18,7 @@
 <body class="hold-transition login-page" style = "background-color: #4696e6;">
 <div class="login-box">
   <div class="login-logo">
-      <img src="{{asset('assets/img/logotakprint.png')}}" alt="" style = "witdh:30%;">
+      <img src="{{asset('assets/img/logotakprint.png')}}" alt="" style = "width:30%;">
       <br>
     <a href="#" style = "color:white;"><b>TAK PRINTIN </b>REGISTER</a>
   </div>
@@ -27,7 +27,7 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Silakan Sign In Terlebih Dahulu</p>
 
-      <form action="{{route('register')}}" method="post">
+      <form action="{{route('register')}}" method="POST">
       @csrf
         <div class="input-group mb-3">
           <input type="name" class="form-control" name = "name" placeholder="name">
@@ -66,7 +66,7 @@
 
         <div class="row">
 
-
+            <!-- <input type="submit" class ="btn btn-success btn-block" placeholder="Registrasi"> -->
             <button type="submit" class="btn btn-success btn-block">Registrasi</button>
 
           <!-- /.col -->
@@ -75,7 +75,7 @@
 
       <br>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Belum Punya Akun ? Silakan Daftar</a>
+        <a href="{{url('login')}}" class="text-center">Sudah Punya Akun ? Silakan Login</a>
       </p>
     </div>
     <!-- /.login-card-body -->

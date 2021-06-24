@@ -378,17 +378,59 @@
 
                     <td>
 
-                        @if($pemesanans->open == "Open")
+
+
+
+                        <!-- @if($pemesanans->open == "open")
+                  
                         <a href="" class = "btn btn-success" style = "border-radius:50px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">OPEN</a>
                         <br>
                         <a href="{{route('pemesananspesifik', $pemesanans->id)}}" class = "btn btn-dark" style = "font-size:20px; padding-left:40px; padding-right:40px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">ORDER</a>
-                        @elseif($pemesanans->open == "Close")
+                        @elseif($pemesanans->open == "close")
+                        
                         <a href="" class = "btn btn-danger" style = "border-radius:100px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">CLOSE</a>
                         <h4>Maaf Anda tidak bisa order</h4>
                         @endif
+                        <br> -->
+
+
+                        <?php 
+                        date_default_timezone_set('Asia/Jakarta');
+                        $time_default = date('H:i:s');
+                        $time_buka = $pemesanans->waktu_buka;
+                        $time_tutup = $pemesanans->waktu_tutup;
+
+
+                        ?>
+
+                        <?php
+                        
+                        if($time_buka < $time_default && $time_tutup > $time_default )
+                        {
+                        
+                            ?>
+                         <a href="" class = "btn btn-success" style = "border-radius:50px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">OPEN</a>
                         <br>
+                        <a href="{{route('pemesananspesifik', $pemesanans->id)}}" class = "btn btn-dark" style = "font-size:20px; padding-left:40px; padding-right:40px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">ORDER</a>
+
+                        <?php }
+
+                        else if ($time_tutup == NULL && $time_buka == NULL) {
+                        ?>
+
+                        <a href="" class = "btn btn-danger" style = "border-radius:100px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">CLOSE</a>
+                        <h4>Maaf Anda tidak bisa order</h4>
+
+                       <?php }
+                       else {
+                       ?>
+
+                        <a href="" class = "btn btn-danger" style = "border-radius:100px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">CLOSE</a>
+                        <h4>Maaf Anda tidak bisa order</h4>
 
 
+                       <?php } ?>
+                       
 
                     </td>
                   </tr>

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>TAKPRINTIN - Solusi Terbaik Untuk Anda</title>
+        <title>TAKPRINT.IN - Solusi Terbaik Untuk Anda</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
         <!-- Font Awesome icons (free version)-->
@@ -53,7 +53,7 @@
         <nav class="navbar navbar-expand-lg  text-uppercase fixed-top" id="mainNav" style = "background-color:#4696e6;">
             <div class="container">
                 <img src="{{asset('assets/img/logotakprint.png')}}" alt="" class="navbar-brand" style = "width:70px;" >
-                <a class="navbar-brand" href="#page-top" style = "font-size:40px;margin-left:5px;">TAKPRINTIN</a>
+                <a class="navbar-brand" href="#page-top" style = "font-size:40px;margin-left:5px;">TAKPRINT.IN</a>
                 <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -128,7 +128,7 @@
 
 
         <!-- Footer-->
-        <footer class="footer text-center" style = "background-color:#4696e6;">
+        <footer class="footer text-center" id = "kontak" style = "background-color:#4696e6;">
             <div class="container">
                 <div class="row">
                     <!-- Footer Location-->

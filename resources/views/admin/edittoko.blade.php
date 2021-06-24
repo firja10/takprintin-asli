@@ -64,11 +64,26 @@
       </div>
 
       <div class="form-group">
+        <label for="waktu_buka" class="col-form-label">Waktu Buka</label>
+        <input type="time" name ="waktu_buka" id="waktu_buka" class ="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="waktu_tutup" class="col-form-label">Waktu Tutup</label>
+        <input type="time" name ="waktu_tutup" id="waktu_tutup" class ="form-control">
+      </div>
+
+
+      <div class="form-group">
+      <h3> Untuk Kondisi Toko, Jika ada perubahan jam ( tidak sesuai jadwal yang sudah ditetapkan ), silakan untuk diisi</h3>
+      </div>
+
+      <div class="form-group">
         <label for="open" class="col-form-label">Kondisi Toko</label>
         <select name="open" id="open" class = "form-control">
             <option disabled selected value> -- Pilih Kondisi Toko -- </option>
-            <option value="Open">Open</option>
-            <option value="Close">Close</option>
+            <option value="open">Open</option>
+            <option value="close">Close</option>
         </select>
       </div>
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pembeli;
+use App\Models\Kertas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PembeliController extends Controller
 {
@@ -86,38 +88,75 @@ class PembeliController extends Controller
         // return redirect('keranjang')->with('success','Kampus Sudah Terdaftar');
 
 
-
         $data = new Pembeli;
 
         if($request->hasFile('file')){
             $filename = $request["file"]->getClientOriginalName();
 
             if( $data->file ){
-                Storage::delete('/public/assets/img/'.Auth::user()->file);
+                Storage::delete('/public/storage/Pembeli/'.Auth::user()->file);
             }
-            $request["file"]->storeAs('Pembelis', $filename, 'public');
+            $request["file"]->storeAs('Pembeli', $filename, 'public');
         }else{
             $filename=$data->file;
         }
+
+
+        // if($request->hasFile('lambangkampus')){
+        //     $filename = $request["lambangkampus"]->getClientOriginalName();
+
+        //     if( Infokampus::find($id)->lambangkampus ){
+        //         Storage::delete('/public/storage/infokampus/'.Infokampus::find($id)->lambangkampus);
+        //     }
+        //     $request["lambangkampus"]->storeAs('infokampus', $filename, 'public');
+        // }else{
+        //     $filename=Infokampus::find($id)->lambangkampus;
+        // }
+
+
+
+
+
+
+
         
         $data->nama_file = $request['nama_file'];
         $data->email = $request['email'];
         $data->kategori = $request['kategori'];
-        $data->jeni_kertas = $request['jeni_kertas'];
+        $data->jenis_kertas = $request['jenis_kertas'];
         $data->ukuran_kertas = $request['ukuran_kertas'];
         $data->catatan = $request['catatan'];
         $data->jumlah_halaman = $request['jumlah_halaman'];
         $data->nama_toko = $request['nama_toko'];
-        $data->harga = $request['harga'];
+        // $data->harga = $request['harga'];
+        $data->telepon = $request['telepon'];
         $data->pembayaran = $request['pembayaran'];
-        $data->status_pembayaran = $request['status_pembayaran'];
+        // $data->status_pembayaran = $request['status_pembayaran'];
+        $data->status_pembayaran = 0;
         $data->bukti_pembayaran = $request['bukti_pembayaran'];
         $data->progress = $request['progress'];
         $data->file = $filename;
         $data->user_id = Auth::id();
+
+
+        $pisah = explode(" - ", $data->jenis_kertas);
+        $pisah2 = array_reverse($pisah);
+        $per_lembar = floatval($pisah2[0]);
+        $pangaos = $data->jumlah_halaman;
+        $angka = $pangaos*$per_lembar + 1;
+        $total_asli = number_format($angka);
+        $total = number_format($pangaos*$per_lembar);
+        
+        $data->harga = $total;
+        $data->harga_asli = $total_asli;
+
+
+
+
+
         $data->save();
 
-        Alert::success('Berhasil!', 'Pembeli baru berhasil ditambahkan!');
+        // Alert::success('Berhasil!', 'Pembeli baru berhasil ditambahkan!');
 
         return redirect('/keranjang');
         // ->with('success', 'Pembeli baru berhasil ditambahkan!');
@@ -201,21 +240,21 @@ class PembeliController extends Controller
     {
         //
 
-        //     if($request->hasFile('file')){
-        //     $filename = $request["file"]->getClientOriginalName();
+            if($request->hasFile('file')){
+            $filename = $request["file"]->getClientOriginalName();
 
-        //     if( Pembeli::find($id)->file ){
-        //         Storage::delete('/public/img/Pembeli/'.Pembeli::find($id)->file);
-        //     }
-        //     $request["file"]->storeAs('Pembeli', $filename, 'public');
-        // }else{
-        //     $filename=Pembeli::find($id)->file;
-        // }
+            if( Pembeli::find($id)->file ){
+                Storage::delete('/public/storage/Pembeli/'.Pembeli::find($id)->file);
+            }
+            $request["file"]->storeAs('Pembeli', $filename, 'public');
+        }else{
+            $filename=Pembeli::find($id)->file;
+        }
 
     $pembelis = Pembeli::where('id', $id)->update([
 
-            // 'file' => $filename,
-            'file' => $request['file'],
+            'file' => $filename,
+            // 'file' => $request['file'],
             // 'pembayaran' => $request['pembayaran'],
 
         ]);

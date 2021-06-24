@@ -81,6 +81,13 @@ Route::get('/pemesanan/{id}', [App\Http\Controllers\LandingController::class, 'p
 Route::get('/rincian/{id}', [App\Http\Controllers\LandingController::class, 'rincianspesifik'])->name('rincianspesifik')->middleware('auth');
 Route::post('/rincian/{id}', [App\Http\Controllers\LandingController::class, 'updaterincian'])->name('updaterincian')->middleware('auth');
 Route::get('/pembayaran/{id}', [App\Http\Controllers\LandingController::class, 'konfirmasipembayaran'])->name('konfirmasipembayaran')->middleware('auth');
+Route::get('/update-pembayaran/{id}', [App\Http\Controllers\LandingController::class, 'editpembayaran'])->name('editpembayaran')->middleware('auth');
+Route::post('/update-pembayaran/{id}', [App\Http\Controllers\LandingController::class, 'updatepembayaran'])->name('updatepembayaran')->middleware('auth');
+Route::get('/progress/{id}', [App\Http\Controllers\LandingController::class, 'progressproduk'])->name('progressproduk')->middleware('auth');
+Route::post('/progress/{id}', [App\Http\Controllers\LandingController::class, 'updateprogress'])->name('updateprogress')->middleware('auth');
+Route::get('/pemberian-rating/{id}', [App\Http\Controllers\LandingController::class, 'editrating'])->name('editrating')->middleware('auth');
+Route::post('/pemberian-rating/{id}', [App\Http\Controllers\LandingController::class, 'updaterating'])->name('updaterating')->middleware('auth');
+
 
 
 Route::get('/keranjang', [App\Http\Controllers\LandingController::class, 'keranjang'])->name('keranjang');
@@ -95,3 +102,9 @@ Route::get('/infokampus', [\App\Http\Controllers\HomeController::class, 'infokam
 Route::get('/forminfokampus', [\App\Http\Controllers\HomeController::class, 'forminfokampus'])->name('forminfokampus')->middleware('is_admin');
 
 Route::resource('admin/informasi-toko', \App\Http\Controllers\TokoController::class)->middleware('is_admin');
+Route::get('admin/informasi-pembeli', [\App\Http\Controllers\LandingController::class,'indexpembeli'])->name('indexpembeli')->middleware('is_admin');
+Route::post('admin/informasi-pembeli/{id}', [\App\Http\Controllers\LandingController::class,'updateadminpembayaran'])->name('updateadminpembayaran')->middleware('is_admin');
+Route::get('admin/informasi-progress', [\App\Http\Controllers\LandingController::class,'kumpulanprogress'])->name('kumpulanprogress')->middleware('is_admin');
+Route::get('admin/daftar-user', [\App\Http\Controllers\LandingController::class,'daftaruser'])->name('daftaruser')->middleware('is_admin');
+Route::post('admin/daftar-user/{id}', [\App\Http\Controllers\LandingController::class,'jadikanadmin'])->name('jadikanadmin')->middleware('is_admin');
+Route::post('admin/informasi-progress/{id}', [\App\Http\Controllers\LandingController::class,'verifprogress'])->name('verifprogress')->middleware('is_admin');

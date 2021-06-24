@@ -556,6 +556,7 @@ class ComposerStaticInitfc99d63b71ba35344376bb2413d76014
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Models\\Infojurusan' => __DIR__ . '/../..' . '/app/Models/Infojurusan.php',
         'App\\Models\\Infokampus' => __DIR__ . '/../..' . '/app/Models/Infokampus.php',
+        'App\\Models\\Kertas' => __DIR__ . '/../..' . '/app/Models/Kertas.php',
         'App\\Models\\Pembeli' => __DIR__ . '/../..' . '/app/Models/Pembeli.php',
         'App\\Models\\Toko' => __DIR__ . '/../..' . '/app/Models/Toko.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',

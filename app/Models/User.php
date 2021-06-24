@@ -20,9 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'google_id',
-        'username',
         'is_admin',
+        
     ];
 
     /**
@@ -43,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function pembeli()
+    {
+        # code...
+        return $this->hasMany('App\Pembeli');
+    }
+
+
+
+
 }
