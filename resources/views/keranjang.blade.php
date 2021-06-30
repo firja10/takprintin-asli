@@ -40,7 +40,7 @@
 
                                     <ul style = "color:black">
                                         <li><p style = "font-size:20px;color:black">Nama File: {{$pemesan->nama_file}}</p></li>
-                                        <li><p style = "font-size:20px;color:black">Kategori : {{$pemesan->kategori}}</p></li>
+                                        <!--<li><p style = "font-size:20px;color:black">Kategori : {{$pemesan->kategori}}</p></li>-->
                                         <li><p style = "font-size:20px;color:black">Jenis Kertas : {{$pemesan->jenis_kertas}}</p></li>
                                         <li><p style = "font-size:20px;color:black">Ukuran Kertas : {{$pemesan->ukuran_kertas}}</p></li>
                                         <li><p style = "font-size:20px;color:black">Jumlah Halaman : {{$pemesan->jumlah_halaman}}</p></li>
@@ -111,6 +111,15 @@
                                     <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Hapus Order</button>
                                     <br>
                                     </form>
+                                    
+                                    @if($pemesan->bintang_rating == NULL)
+                                    
+                                    <a class = "btn btn-warning" href = "{{route('updaterating',$pemesan->id)}}">Silakan Berikan Penilaian</a>
+                                    @elseif($pemesan->bintang_rating != NULL)
+                                            <a class = "btn btn-success" >Terima Kasih atas Penilaian Anda</a>
+                                    
+                                    @endif
+                                    
 
                                     @endif
 

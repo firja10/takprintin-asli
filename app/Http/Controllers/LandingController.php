@@ -180,6 +180,7 @@ public function index()
 
             'pembayaran' => $request['pembayaran'],
             'status_pembayaran' => 0,
+            'pengantar' => $request['pengantar'],
 
         ]);
 
@@ -426,6 +427,24 @@ public function index()
 
     }
 
+
+
+
+
+
+
+
+
+    public function downloadfile($id)
+    {
+
+     $pembelis = Pembeli::where('id',$id)->firstorFail();
+     $penyimpanan = storage_path('app/public/Pembeli/' . $pembelis->file);
+     return response()->download($penyimpanan);
+
+
+
+    }
 
 
 

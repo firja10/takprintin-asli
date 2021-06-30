@@ -20,12 +20,33 @@
   <div class="login-logo">
       <img src="{{asset('assets/img/logotakprint.png')}}" alt="" style = "witdh:30%;">
       <br>
-    <a href="#" style = "color:white;"><b>TAK PRINTIN </b>LOGIN</a>
+    <a href="#" style = "color:white;"><b>TAKPRINT.IN </b>LOGIN</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Silakan Sign In Terlebih Dahulu</p>
+      
+<!--    @error('email')-->
+<!--<div class="alert alert-danger alert-block">-->
+<!--    <button type="button" class="close" data-dismiss="alert">×</button>    -->
+<!--    <strong>Email Anda Salah / Belum Terdaftar</strong>-->
+<!--</div>-->
+<!--    @enderror-->
+    
+    
+    
+  @if ($message = Session::get('error'))
+  
+  <div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>    
+    <strong>Email / Password Anda Salah / Belum Terdaftar</strong>
+</div>
+  
+  @endif
+    
+    
+    
 
       <form action="{{route('login')}}" method="post">
       @csrf
@@ -63,14 +84,14 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="#" class="btn btn-block btn-primary">
-          <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        {{-- <a href="{{route('google.login')}}" class="btn btn-block btn-danger"> --}}
-            <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
-          <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
+        <!--<p>- OR -</p>-->
+        <!--<a href="#" class="btn btn-block btn-primary">-->
+        <!--  <i class="fab fa-facebook mr-2"></i> Sign in using Facebook-->
+        <!--</a>-->
+        <!--{{-- <a href="{{route('google.login')}}" class="btn btn-block btn-danger"> --}}-->
+        <!--    <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">-->
+        <!--  <i class="fab fa-google-plus mr-2"></i> Sign in using Google+-->
+        <!--</a>-->
       </div>
       <!-- /.social-auth-links -->
 

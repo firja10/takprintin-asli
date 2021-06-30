@@ -77,6 +77,11 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a class="dropdown-item" href="#">
+                                      
+                                      
+                                 @if(Auth::user()->is_admin == 1)  
+                                  <a class="dropdown-item" href="{{url('/admin')}}"> Halaman Admin</a>
+                                 @endif
 
 
                                     <a class = "dropdown-item" href="{{ route('logout') }}"
@@ -154,7 +159,7 @@
         </footer>
         <!-- Copyright Section-->
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; TAKPRINTIN 2021</small></div>
+            <div class="container"><small>Copyright &copy; TAKPRINT.IN 2021</small></div>
         </div>
 
         <!-- Bootstrap core JS-->

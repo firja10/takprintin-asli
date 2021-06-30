@@ -62,6 +62,16 @@
         <label for="harga" class="col-form-label">Harga</label>
         <textarea name="harga" class = "form-control" id="harga" cols="30" rows="10" value = "{{$tokos->harga}}">{{$tokos->harga}}</textarea>
       </div>
+      
+      
+      
+            <div class="form-group">
+        <label for="peta" class="col-form-label">Link Lokasi Peta</label>
+        <textarea name="peta" class = "form-control" id="peta" cols="30" rows="10" value = "{{$tokos->harga}}">{{$tokos->peta}}</textarea>
+      </div>
+      
+      
+      
 
       <div class="form-group">
         <label for="waktu_buka" class="col-form-label">Waktu Buka</label>
@@ -73,9 +83,10 @@
         <input type="time" name ="waktu_tutup" id="waktu_tutup" class ="form-control">
       </div>
 
+        <br>
 
       <div class="form-group">
-      <h3> Untuk Kondisi Toko, Jika ada perubahan jam ( tidak sesuai jadwal yang sudah ditetapkan ), silakan untuk diisi</h3>
+      <p> <strong>Untuk Kondisi Toko, Jika ada perubahan jam ( tidak sesuai jadwal yang sudah ditetapkan ), silakan untuk diisi kondisi di bawah ini</strong> </p>
       </div>
 
       <div class="form-group">

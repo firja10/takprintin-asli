@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>TAKPRINTIN - Solusi Terbaik Untuk Anda</title>
+        <title>Silakan Pesan di daftar Toko ini !</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
         <!-- Font Awesome icons (free version)-->
@@ -44,14 +44,25 @@
         <nav class="navbar navbar-expand-lg  text-uppercase fixed-top" id="mainNav" style = "background-color:white;">
             <div class="container">
                 <img src="{{asset('assets/img/logotakprint.png')}}" alt="" class="navbar-brand" style = "width:70px;" >
-                <a class="navbar-brand" href="#page-top" style = "font-size:40px;margin-left:5px; color:black;">TAKPRINTIN</a>
+                <a class="navbar-brand" href="{{url('/')}}" style = "font-size:40px;margin-left:5px; color:black;">TAKPRINT.IN</a>
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
 
                         <br>
 
-                        <center>
+                        <!--<center>-->
+         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/')}}">Beranda</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/pemesanan')}}">Pemesanan</a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/keranjang')}}">Keranjang <sup>
+                            </sup> </a></li>
+
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#kontak')}}">Kontak</a></li>
+                                    <br>
+                            
+                            
+                            
         <li class="nav-item mx-0 mx-lg-1">
 
         <div class="dropdown">
@@ -60,6 +71,10 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">
+                  
+                @if(Auth::user()->is_admin == 1)  
+                  <a class="dropdown-item" href="{{url('/admin')}}"> Halaman Admin</a>
+                @endif
 
 
                 <a class = "dropdown-item" href="{{ route('logout') }}"
@@ -78,7 +93,7 @@
 
     </li>
 
-</center>
+<!--</center>-->
 
                     </ul>
                 </div>
@@ -89,8 +104,12 @@
                 <div class="container d-flex flex-column">
                     <div class="row">
 
-
+                   <h2 style = "text-align:left;"> <strong>FILTER</strong> </h2>
+                        <br>
+                        <br>
                         <div class="col-md-4" style = "text-align:center;">
+
+
 
                             <form action="/pemesanan/searchnama" method="GET">
 
@@ -109,8 +128,6 @@
                         </form>
 
                         </div>
-
-
 
 
 
@@ -179,7 +196,7 @@
                     <br>
 
 <div class="row" style = "margin-top:10px; text-align:center;">
-    <h2 style = "text-align:left;"> <strong>FILTER</strong> </h2>
+
     <br>
 
     {{-- <div class="col-md-2" style = "text-align:center;margin-top:20px;" >

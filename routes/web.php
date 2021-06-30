@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/clear',function(){
+   Artisan::call('cache:clear');
+   Artisan::call('config:cache');
+});
+
 Route::get('/', function () {
     return view('landing');
 });
@@ -94,7 +100,7 @@ Route::get('/keranjang', [App\Http\Controllers\LandingController::class, 'keranj
 Route::get('/keranjang/{id}', [App\Http\Controllers\LandingController::class, 'keranjangspesifik'])->name('keranjangspesifik');
 
 
-Route::get('/adminhome', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('user.index');
 Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('dashboard');
@@ -108,3 +114,12 @@ Route::get('admin/informasi-progress', [\App\Http\Controllers\LandingController:
 Route::get('admin/daftar-user', [\App\Http\Controllers\LandingController::class,'daftaruser'])->name('daftaruser')->middleware('is_admin');
 Route::post('admin/daftar-user/{id}', [\App\Http\Controllers\LandingController::class,'jadikanadmin'])->name('jadikanadmin')->middleware('is_admin');
 Route::post('admin/informasi-progress/{id}', [\App\Http\Controllers\LandingController::class,'verifprogress'])->name('verifprogress')->middleware('is_admin');
+
+
+Route::get('admin/informasi-pembeli/{id}/download', [\App\Http\Controllers\LandingController::class,'downloadfile'])->name('downloadfile')->middleware('is_admin');
+
+
+
+
+
+

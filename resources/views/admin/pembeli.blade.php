@@ -18,6 +18,7 @@
       <th scope="col">Status Pembayaran</th>
       <th scope="col">Bukti Bayar</th>
       <th scope="col">Aksi</th>
+      <th scope="col">Download File</th> 
 
 
     </tr>
@@ -57,6 +58,8 @@
       <td> <a href="#" class = "btn btn-warning">Lihat Bukti</a> </td>
       <td> <a href="#" class = "btn btn-dark disabled" >Sudah Membayar</a> </td>
       @endif
+      
+      <td>  <a href="{{route('downloadfile',$pemesan->id)}}" class = "btn btn-success"> Download File </a> </td>
 
 
 

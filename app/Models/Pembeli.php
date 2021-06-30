@@ -12,7 +12,7 @@ class Pembeli extends Model
     protected $table = 'pembelis';
 
     protected $fillable = [
-        'nama_file', 'telepon', 'email', 'file', 'kategori', 'jenis_kertas', 'ukuran_kertas', 'jumlah_halaman', 'catatan', 'nama_toko', 'pembayaran',
+        'nama_file', 'telepon', 'email', 'file', 'kategori', 'jenis_kertas', 'ukuran_kertas', 'jumlah_halaman', 'catatan', 'nama_toko', 'pembayaran','peta_toko',
     ];
 
 

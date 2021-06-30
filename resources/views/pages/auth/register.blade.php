@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TAKPRINTIN | Register</title>
+  <title>TAKPRINT.IN | Register</title>
 
   <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
   <!-- Google Font: Source Sans Pro -->
@@ -20,12 +20,23 @@
   <div class="login-logo">
       <img src="{{asset('assets/img/logotakprint.png')}}" alt="" style = "width:30%;">
       <br>
-    <a href="#" style = "color:white;"><b>TAK PRINTIN </b>REGISTER</a>
+    <a href="#" style = "color:white;"><b>TAKPRINT.IN </b>REGISTER</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Silakan Sign In Terlebih Dahulu</p>
+      
+      @error('password')
+<div class="alert alert-danger alert-block">
+    <button type="button" class="close" data-dismiss="alert">×</button>    
+    <strong>Password Anda Kurang dari 8</strong>
+</div>
+@enderror
+      
+      
+      
+      
 
       <form action="{{route('register')}}" method="POST">
       @csrf

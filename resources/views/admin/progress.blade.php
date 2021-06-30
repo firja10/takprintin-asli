@@ -14,8 +14,11 @@
       <th scope="col">Nama Toko</th>
       <th scope="col">Email</th>
       <th scope="col">Nomor Telepon</th>
-      <th scope="col">Bukti Progress</th>
-      <th scope="col">Konfirmasi Progress</th>
+       <th scope="col">Metode Pengantaran</th>
+      <!--<th scope="col">Bukti Progress</th>-->
+      <!--<th scope="col">Konfirmasi Ada Bukti</th>-->
+        <th scope="col">Konfirmasi Langsung</th>
+
 
     </tr>
   </thead>
@@ -31,35 +34,62 @@
       <td>{{$pemesan->nama_toko}}</td>
       <td>{{$pemesan->email}}</td>
       <td>{{$pemesan->telepon}}</td>
+      <td>{{$pemesan->pengantar}}</td>
 
       
 
       @if($pemesan->status_pembayaran == 0 )
-      <td> <a href="#" class = "btn btn-danger">Belum Ada</a> </td>
-      <td> <a href="#" class = "btn btn-danger" >Belum Bayar</a> </td>
-      @elseif($pemesan->progress == NULL)
-      <td> <a href="#" class = "btn btn-danger">Belum Ada</a> </td>
-      <td> <a href="#" class = "btn btn-success" >Sudah Bayar</a> </td>
-      @elseif($pemesan->progress == 1)
-      
-      <td>
-      
-      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#buktiprogress">Lihat Bukti</button> 
-      
+      <!--<td> <a href="#" class = "btn btn-danger">Belum Ada</a> </td>-->
+      <!--<td> <a href="#" class = "btn btn-danger" >Belum Bayar</a> </td>-->
+        <td>
+        <a href="#" class = "btn btn-danger" >Belum Membayar</a>
       </td>
-
-      <td>
+      
+      
+      @elseif($pemesan->progress == NULL)
+      <!--<td> <a href="#" class = "btn btn-danger">Belum Ada</a> </td>-->
+      <!--<td> <a href="#" class = "btn btn-success" >Sudah Bayar</a> </td>-->
+      
+      
+    <td>
       <form action="{{route('verifprogress',$pemesan->id)}}" method = "POST" enctype="multipart/form-data">
       @csrf
-      <button class = "btn btn-primary" type = "submit" name = "submit" id = "submit">Konfirmasi Progress</button>
+      <button class = "btn btn-primary" type = "submit" name = "submit" id = "submit">Konfirmasi Langsung</button>
       </form>
       </td>
+      @elseif($pemesan->progress == 1)
+      
+      <!--<td>-->
+      
+      <!--<button type="button" class="btn btn-warning" data-toggle="modal" data-target="#buktiprogress">Lihat Bukti</button> -->
+      
+      <!--</td>-->
+
+      <!--<td>-->
+      <!--<form action="{{route('verifprogress',$pemesan->id)}}" method = "POST" enctype="multipart/form-data">-->
+      <!--@csrf-->
+      <!--<button class = "btn btn-primary" type = "submit" name = "submit" id = "submit">Konfirmasi Progress</button>-->
+      <!--</form>-->
+      <!--</td>-->
+      
+          <td>
+      <form action="{{route('verifprogress',$pemesan->id)}}" method = "POST" enctype="multipart/form-data">
+      @csrf
+      <button class = "btn btn-primary" type = "submit" name = "submit" id = "submit">Konfirmasi Langsung</button>
+      </form>
+      </td>
+      
+      
 
       @elseif($pemesan->progress == 2)
-      <td>
-      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buktiprogress">Lihat Bukti</button> 
-       </td>
-      <td> <a href="#" class = "btn btn-primary disabled" >Sudah Sampai</a> </td>
+      <!--<td>-->
+      <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#buktiprogress">Lihat Bukti</button> -->
+      <!-- </td>-->
+      <!--<td> <a href="#" class = "btn btn-primary disabled" >Sudah Sampai</a> </td>-->
+      
+      
+            <td> <a href="#" class = "btn btn-primary disabled" >Pesanan Sudah Sampai</a> </td>
+
       @endif
 
 

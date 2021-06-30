@@ -10,7 +10,7 @@ class Toko extends Model
     use HasFactory;
     protected $table = 'tokos';
     protected $fillable = [
-        'nama_toko', 'alamat_toko', 'jenis_kertas', 'ukuran_kertas', 'harga', 'open', 'lambang_toko','waktu_buka','waktu_tutup',
+        'nama_toko', 'alamat_toko', 'jenis_kertas', 'ukuran_kertas', 'harga', 'open', 'lambang_toko','waktu_buka','waktu_tutup','peta',
     ];
 
     public function pembeli()

@@ -3,7 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TAKRINT.IN | @yield('judul')</title>
+  <title>Admin | @yield('judul')</title>
+  
+  
+  
+   <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
+          
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -60,7 +65,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{url('/')}}" class="brand-link">
       <img src="{{asset('assets/img/logotakprint.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">TAKPRINT.IN</span>
     </a>
@@ -102,10 +107,19 @@
 
 
           <li class="nav-item">
-            <a href="{{url('/adminhome')}}" class="nav-link">
+            <a href="{{url('/')}}" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                Halaman Home
+              </p>
+            </a>
+          </li>
+          
+         <li class="nav-item">
+            <a href="{{url('/admin/')}}" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+               Halaman Dashboard
               </p>
             </a>
           </li>
@@ -113,7 +127,8 @@
 
           <li class="nav-item">
             <a href="{{url('/admin/informasi-pembeli')}}" class="nav-link">
-              <i class="nav-icon fas fa-graduation-cap"></i>
+              <!--<i class="nav-icon fas fa-graduation-cap"></i>-->
+              <i class="nav-icon fas fa-shopping-cart"></i>
               <p>
                 Informasi Pembeli
               </p>
@@ -139,8 +154,8 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-user-graduate"></i>
+            <a href="{{url('/admin/daftar-user')}}" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
               <p>
               Informasi User
               </p>

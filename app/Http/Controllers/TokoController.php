@@ -123,7 +123,8 @@ class TokoController extends Controller
             'open' => $kondisi,
             'waktu_buka' => $request['waktu_buka'],
             'waktu_tutup' => $request['waktu_tutup'],
-            'lambang_toko' => $filename
+            'lambang_toko' => $filename,
+            'peta' => $request['peta'],
         ]);
 
         // Session::flash('sukses','Data Sudah Terupdate');

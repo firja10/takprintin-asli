@@ -7,7 +7,34 @@
                         <div class="col-md-12">
 
 
-                            <h2 style = "color:black;text-align:center;margin-top:30px;font-size:60px;">PESANAN SEDANG DIKERJAKAN</h2>
+
+                        
+                    @if($pembelis->status_pembayaran == 0 && $pembelis->progress == NULL )
+                    
+                            <h2 style = "color:black;text-align:center;margin-top:30px;font-size:60px;">SEGERA LAKUKAN PEMBAYARAN</h2>
+                            
+                    @elseif($pembelis->status_pembayaran == 1 && $pembelis->progress == NULL)
+                    
+                             <h2 style = "color:black;text-align:center;margin-top:30px;font-size:60px;">TUNGGU VERIFIKASI PEMBAYARAN</h2>
+                    
+                    
+                     @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == NULL)
+                     
+                             <h2 style = "color:black;text-align:center;margin-top:30px;font-size:60px;">PESANAN SEDANG DALAM PENGERJAAN</h2>
+                     
+                     
+                      @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == 2)
+                         <strong>     <h2 style = "color:black;text-align:center;margin-top:30px;font-size:60px;">PESANAN SUDAH SELESAI</h2></strong>
+                      
+                      
+                      @endif
+                    
+                    
+                            
+                            
+                            
+                            
+                            
                             <p style = "color:black;text-align:center;margin-top:30px;font-size:40px;">{{$pembelis->nama_toko}}</p>
 
 
@@ -25,30 +52,39 @@
                                 @elseif($pembelis->status_pembayaran == 1 && $pembelis->progress == NULL)
                                 <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:yellow;">Silakan Tunggu Verifikasi Pembayaran</span> </p></li>
                                 @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == NULL)
-                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:purple;">Silakan Tunggu Produknya</span> </p></li>
+                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:purple;">Pesanan Sedang Dikerjakan</span> </p></li>
+                                
                                 <li> 
-                                <p style = "font-size:40px; color:black;">Jika Sudah Sampai, Silakan Konfirmasi Lewat Form ini </p>
-                                    <form action="{{route('updateprogress', $pembelis->id)}}" method ="POST" enctype = "multipart/form-data">
-                                    @csrf
-                                    <div class="form-group">
-                                    <input type="file" name = "bukti_progress" id = "bukti_progress" class = "form-control">
-                                    </div>
+                                <!--<p style = "font-size:40px; color:black;">Jika Sudah Sampai, Silakan Konfirmasi Lewat Form ini </p>-->
+                                <!--    <form action="{{route('updateprogress', $pembelis->id)}}" method ="POST" enctype = "multipart/form-data">-->
+                                <!--    @csrf-->
+                                <!--    <div class="form-group">-->
+                                <!--    <input type="file" name = "bukti_progress" id = "bukti_progress" class = "form-control">-->
+                                <!--    </div>-->
                                     
-                                    <br>
+                                <!--    <br>-->
 
-                                    <div class="form-group">
-                                    <button type = "submit" name = "submit" id ="submit" class = "btn btn-dark"> Upload Bukti Sampai </button>
-                                    </div>
+                                <!--    <div class="form-group">-->
+                                <!--    <button type = "submit" name = "submit" id ="submit" class = "btn btn-dark"> Upload Bukti Sampai </button>-->
+                                <!--    </div>-->
                                 
 
-                                    </form>
+                                <!--    </form>-->
                                   </li>
+                                  
+                                  
+                                  
+                                  
 
                                  @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == 1)
                                     @if($pembelis->bukti_progress !=NULL)
                                  <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:white;">Tunggu Konfirmasi Admin</span> </p></li>
                                     @else
-                                    <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:white;">Bukti Anda Belum Ada !, Silakan Upload Ulang</span> </p></li>
+                                    <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:white;">Pesanan Sedang Dikerjakan </span> </p></li>
+                                    
+                                    
+                                    
+                                    
                                     <form action="{{route('updateprogress', $pembelis->id)}}" method ="POST" enctype = "multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -63,9 +99,15 @@
                                 
 
                                     </form>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                     @endif
                                 @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == 2)
-                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:purple;">Terima Kasih Atas Langganan Anda  </span> </p></li>
+                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:yellow;">Terima Kasih Atas Langganan Anda  </span> </p></li>
                                 <li> <a href="{{route('editrating', $pembelis->id)}}" class = "btn btn-secondary"> Isi Penilaian Untuk Kami </a>  </li>
                                 @endif
                             </ul>
@@ -86,6 +128,10 @@
                             style="border: 0; width: 100%; height: 290px"
                             allowfullscreen
                           ></iframe> -->
+                          
+                          
+                            <iframe src="{{$pembelis->peta_toko}}" width="900" height="650" style="border:0; text-align:center;" allowfullscreen="" loading="lazy"></iframe>
+                            
                         </div>
 
 

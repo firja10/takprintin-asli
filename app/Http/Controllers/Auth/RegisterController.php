@@ -55,6 +55,29 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
            
         ]);
+        
+        $data  =  Input::except(array('_token')) ;
+        
+        
+        $rule = ([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+           
+        ]);
+        
+        
+        
+        $validator = Validator::make($data,$rule);
+        
+        
+         if ($validator->fails()) {
+             return redirect()->route('register')
+                ->with('errorregister','Password Anda Kurang dari 8 / Kolom Pendaftaran Anda Masih Kosong.');
+        } else {
+            return [];
+        }
+        
     }
 
     /**

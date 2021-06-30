@@ -135,6 +135,7 @@ class PembeliController extends Controller
         $data->status_pembayaran = 0;
         $data->bukti_pembayaran = $request['bukti_pembayaran'];
         $data->progress = $request['progress'];
+        $data->peta_toko = $request['peta_toko'];
         $data->file = $filename;
         $data->user_id = Auth::id();
 
@@ -149,6 +150,7 @@ class PembeliController extends Controller
         
         $data->harga = $total;
         $data->harga_asli = $total_asli;
+
 
 
 

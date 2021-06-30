@@ -150,9 +150,56 @@
 
             <div class="card-body">
             {{-- <h5 class="card-title m-0 font-weight-bold text-dark" style = "text-align:center;">Ieu Aink</h5> --}}
+            
         <center><h5 class="card-title m-0 font-weight-bold text-dark" style = "text-align:center;">{{$infotoko->nama_toko}}</h5></center>
+        
          <center>   <p class="card-text" style = "margin-top:5px;margin-bottom:5px;">{{$infotoko->alamat_toko}}</p> </center>
-         <center> <strong><h6 class="card-text" style = "margin-top:5px;margin-bottom:5px;">{{$infotoko->open}}</h6> </strong> </center>
+         
+         
+         
+         
+                        <?php 
+                        date_default_timezone_set('Asia/Jakarta');
+                        $time_default = date('H:i:s');
+                        $time_buka = $infotoko->waktu_buka;
+                        $time_tutup = $infotoko->waktu_tutup;
+
+
+                        ?>
+
+                        <?php
+                        
+                        if($time_buka < $time_default && $time_tutup > $time_default )
+                        {
+                        
+                            ?>
+         
+         
+         
+         
+         
+         <center> <strong><h6 class="card-text" style = "margin-top:5px;margin-bottom:5px;">Buka</h6> </strong> </center>
+         
+                        <?php }
+
+                        else if ($time_tutup == NULL && $time_buka == NULL) {
+                        ?>
+
+         <center> <strong><h6 class="card-text" style = "margin-top:5px;margin-bottom:5px;">Tutup</h6> </strong> </center>
+         
+         
+                       <?php }
+                       else {
+                       ?>
+               <center> <strong><h6 class="card-text" style = "margin-top:5px;margin-bottom:5px;">Tutup</h6> </strong> </center>        
+                       
+                      
+                       <?php } ?>
+                       
+         
+         
+         
+         
          {{-- <center> <a href="#" style = "margin-bottom:10px;margin-top:10px;" class="btn btn-success">Edit Toko</a></center> --}}
 
 
@@ -169,7 +216,7 @@
              <a href="{{route('infoToko.edit',$class->id)}}" style = "margin-bottom:10px;margin-top:10px;" class="btn btn-success">Edit Toko</a> --}}
                <button class = "btn btn-danger" type = "submit" style = "margin-bottom:10px;margin-top:10px;">Hapus Toko</button>
                {{-- <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditModal">Edit Toko</a> --}}
-               <a href="#" style = "margin-bottom:10px;margin-top:10px; margin-left:5px;margin-right:5px;" class="btn btn-primary">Lihat Toko</a>
+               <a href="{{url('/pemesanan')}}" style = "margin-bottom:10px;margin-top:10px; margin-left:5px;margin-right:5px;" class="btn btn-primary">Lihat Toko</a>
                <a href="{{route('informasi-toko.edit',$infotoko->id)}}" style = "margin-bottom:10px;margin-top:10px;" class="btn btn-success">Edit Toko</a>
 
             </form>
