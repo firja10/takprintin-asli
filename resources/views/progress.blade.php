@@ -107,7 +107,7 @@
                                     
                                     @endif
                                 @elseif($pembelis->status_pembayaran == 2 && $pembelis->progress == 2)
-                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:yellow;">Terima Kasih Atas Langganan Anda  </span> </p></li>
+                                <li> <p style = "font-size:40px; color:black;">Status :  <span style = "font-size:30px; color:yellow;">Pesanan anda dapat diambil</span> </p></li>
                                 <li> <a href="{{route('editrating', $pembelis->id)}}" class = "btn btn-secondary"> Isi Penilaian Untuk Kami </a>  </li>
                                 @endif
                             </ul>

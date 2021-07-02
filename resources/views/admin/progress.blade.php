@@ -1,5 +1,14 @@
 
 @extends('admin.layout.app')
+
+@section('judul')
+
+Informasi Progress
+
+@endsection
+
+
+
 @section("content")
 
 <div class="container"> 

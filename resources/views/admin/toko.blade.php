@@ -1,5 +1,12 @@
 
 @extends('admin.layout.app')
+
+@section('judul')
+
+Informasi Toko
+
+@endsection
+
 @section("content")
 
 {{-- <div class="content-wrapper"> --}}

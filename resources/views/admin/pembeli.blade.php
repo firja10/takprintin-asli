@@ -1,5 +1,14 @@
 
 @extends('admin.layout.app')
+
+@section('judul')
+
+Informasi Pembeli
+
+@endsection
+
+
+
 @section("content")
 
 <div class="container"> 
@@ -19,6 +28,7 @@
       <th scope="col">Bukti Bayar</th>
       <th scope="col">Aksi</th>
       <th scope="col">Download File</th> 
+      <th scope="col">Hapus Order</th> 
 
 
     </tr>
@@ -60,6 +70,9 @@
       @endif
       
       <td>  <a href="{{route('downloadfile',$pemesan->id)}}" class = "btn btn-success"> Download File </a> </td>
+      <td>
+           <a href="{{route('hapusorder',$pemesan->id)}}" class = "btn btn-danger"> Hapus Order</a> </td>
+      </td>
 
 
 

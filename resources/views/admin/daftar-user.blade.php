@@ -1,5 +1,11 @@
 
 @extends('admin.layout.app')
+@section('judul')
+
+Daftar User
+
+@endsection
+
 @section("content")
 
 <div class="container"> 

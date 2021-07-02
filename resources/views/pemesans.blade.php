@@ -394,6 +394,24 @@
                     </td>
 
                     <td>
+                        
+                        
+                        
+                        
+                        <!-- WARNING ! FORM KHUSUS-->
+                        
+                        
+                        
+                        <!--<form method = "POST" action = "{{route('updatejam')}}" name = "status_buka">-->
+                        <!--    @csrf-->
+                         
+                        <!--<input name = "open" type = "hidden" id ="open" value = "hidden">-->
+                        <!--<input type = "submit" name ="submit"> -->
+                        <!--</form>-->
+
+
+
+
 
 
 
@@ -448,6 +466,10 @@
 
                        <?php } ?>
                        
+                       <br>
+                       
+                     <strong><span style = "font-size:16px;">Waktu Buka :</span></strong>  
+                      <p>{{$pemesanans->waktu_buka}} - {{$pemesanans->waktu_tutup}} </p>
 
                     </td>
                   </tr>
@@ -511,6 +533,16 @@
             <div class="container"><small>Copyright &copy; TAKPRINTIN 2021</small></div>
         </div>
 
+      
+
+        
+
+
+    <script>
+//         window.onload = function(){
+//   document.forms['status_buka'].submit();
+// }
+    </script>
 
 
 

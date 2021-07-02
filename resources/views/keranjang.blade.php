@@ -2,6 +2,26 @@
 @section('content')
         <!-- Masthead-->
         <header class="masthead  text-white text-center" style = " background-color:#4696e6;">
+            
+            
+            <!--@if($data == NULL)-->
+            <!--                <br>-->
+            <!--    <br>-->
+            <!--    <div class="container d-flex flex-column">-->
+            <!--        <div class="row">-->
+            <!--            <div class = "col-md-12">-->
+                            
+            <!--                       <h3>Anda Belum memesan</h3>-->
+                            
+                            
+            <!--            </div>-->
+                        
+            <!--            </div>-->
+            <!--            </div>-->
+                        
+            
+            <!--@elseif($data != NULL)-->
+            
 
             @foreach ( $data as $pemesan )
              
@@ -28,6 +48,9 @@
                         </div>
                     </div>
                     <br>
+                    
+                    
+                    
                     <div class="row">
 
                             <div class="col-lg-12" style = "background-color: lightblue">
@@ -151,6 +174,13 @@
 
  
             @endforeach
+            
+            
+            
+            <!--@endif-->
+            
+            
+            
         </header>
 
 

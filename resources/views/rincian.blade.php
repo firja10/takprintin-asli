@@ -49,9 +49,9 @@
 
                                     <ul style = "color:black">
                                         <li><p style = "font-size:20px;color:black">Nama : {{$pembelis->nama_file}}</p></li>
-                                        <li><p style = "font-size:20px;color:black">Kategori : {{$pembelis->kategori}}</p></li>
+                                        <!--<li><p style = "font-size:20px;color:black">Kategori : {{$pembelis->kategori}}</p></li>-->
                                         <li><p style = "font-size:20px;color:black">Jenis Kertas : {{$pembelis->jenis_kertas}}</p></li>
-                                        <li><p style = "font-size:20px;color:black">Ukuran Kertas : {{$pembelis->ukuran_kertas}}</p></li>
+                                        <!--<li><p style = "font-size:20px;color:black">Ukuran Kertas : {{$pembelis->ukuran_kertas}}</p></li>-->
                                         <li><p style = "font-size:20px;color:black">Jumlah Halaman : {{$pembelis->jumlah_halaman}}</p></li>
                                         <li><p style = "font-size:20px;color:black">Catatan : {{$pembelis->catatan}}</p></li>
                                     </ul>
@@ -86,6 +86,12 @@
 
                     @endif
                     <br>
+                    
+                    
+                    
+                    
+                    
+                    @if($pembelis->pembayaran == NULL)
                     <h4 style = "text-align:left">Metode Pembayaran : </h4>
                         <div>
                         <form action="{{route('updaterincian', $pembelis->id)}}" method = "POST">
@@ -122,8 +128,69 @@
                         </div>
                         </form>
                     </div>
+                        
+                    @elseif($pembelis->pembayaran != NULL)
+                    @if($pembelis->status_pembayaran == 0)
+                    
+                    <div class = "col-md-6">
+                        <h4 style ="text-align:left">Ragu dengan metode pembayaran dan pengantaran ? Silakan tentukan pilihan ulang </h4>
+                        
+                    </div>
+                    <br>
+                    <br>
+                    
+                                        <h4 style = "text-align:left"> Metode Pembayaran : </h4>
+                        <div>
+                        <form action="{{route('updaterincian', $pembelis->id)}}" method = "POST">
+                            @csrf
+                            <div class="form-group col-sm-4">
 
+                                <select name="pembayaran" id="pembayaran" class="form-control">
+                                    
+                                    <option value="BNI" name = "BNI">BNI</option>
+                                    <option value="Mandiri" name = "Mandiri">Mandiri</option>
+                                <option value="OVO" name = "OVO">OVO</option>
+                                <option value="GoPay" name = "GoPay">GoPay</option>
+                                </select>
+                                <input type="hidden" name = "file" id = "file" value = "{{$pembelis->file}}">
+                            </div>
+                            
+                            <br>
+                            <br>
+                             <h4 style = "text-align:left">Metode Pengantaran : </h4>
+                             <div class="form-group col-sm-4">
 
+                                <select name="pengantar" id="pengantar" class="form-control">
+                                    <option value="pickup" name = "pickup">Pick-Up</option>
+                                    <option value="gosend" name = "gosend">Go-Send</option>
+                         
+                                </select>
+                                <input type="hidden" name = "file" id = "file" value = "{{$pembelis->file}}">
+                            </div>
+                            
+                            
+                            <br>
+                            <div class="form-group" style = "text-align:right;">
+                            <input type="submit" class="btn btn-warning" value = "LANJUTKAN" style = "font-size:25px;text-align:right">
+                        </div>
+                        </form>
+                    </div>
+                    
+                    @elseif($pembelis->status_pembayaran == 1)
+                     <h4 style = "text-align:left"> Pembayaran sedang diverifikasi </h4>
+                     
+                     
+                    @elseif($pembelis->progress == NULL && $pembelis->status_pembayaran == 2)
+                    <h4 style = "text-align:left"> Pembayaran Selesai, Lihat Progress</h4>
+                    
+                    @elseif($pembelis->progress == 2 && $pembelis->status_pembayaran == 2)
+                    
+                         <h4 style = "text-align:left"> Pesanan Sudah Selesai</h4>
+                      
+                    
+                    
+                    @endif
+                    @endif
 
 
                     </h4>

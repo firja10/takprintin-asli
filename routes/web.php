@@ -100,6 +100,12 @@ Route::get('/keranjang', [App\Http\Controllers\LandingController::class, 'keranj
 Route::get('/keranjang/{id}', [App\Http\Controllers\LandingController::class, 'keranjangspesifik'])->name('keranjangspesifik');
 
 
+//WARNING, KHUSUS !!
+
+Route::post('/pemesanan', [App\Http\Controllers\LandingController::class, 'updatejam'])->name('updatejam');
+
+
+
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/dashboard', [\App\Http\Controllers\HomeController::class, 'dashboard'])->name('user.index');
@@ -117,6 +123,8 @@ Route::post('admin/informasi-progress/{id}', [\App\Http\Controllers\LandingContr
 
 
 Route::get('admin/informasi-pembeli/{id}/download', [\App\Http\Controllers\LandingController::class,'downloadfile'])->name('downloadfile')->middleware('is_admin');
+
+Route::get('admin/informasi-pembeli/{id}/destroy', [\App\Http\Controllers\LandingController::class,'hapusorder'])->name('hapusorder')->middleware('is_admin');
 
 
 
