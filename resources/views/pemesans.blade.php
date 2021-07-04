@@ -60,9 +60,9 @@
 
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{url('/#kontak')}}">Kontak</a></li>
                                     <br>
-                            
-                            
-                            
+
+
+
         <li class="nav-item mx-0 mx-lg-1">
 
         <div class="dropdown">
@@ -71,8 +71,8 @@
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="#">
-                  
-                @if(Auth::user()->is_admin == 1)  
+
+                @if(Auth::user()->is_admin == 1)
                   <a class="dropdown-item" href="{{url('/admin')}}"> Halaman Admin</a>
                 @endif
 
@@ -106,12 +106,12 @@
 
                    <h2 style = "text-align:left;"> <strong>FILTER</strong> </h2>
                         <br>
-                        
+
                         <!--<input type = "text" id = "myInput" onkeyup="myFunction()" placeholder="Search for names.." >-->
-                        
-                        
+
+
                         <br>
-                        <div class="col-md-4" style = "text-align:center;">
+                        <div class="col-md-3" style = "text-align:center;">
 
 
 
@@ -132,12 +132,12 @@
                         </form>
 
                         </div>
+                        <br>
 
 
 
 
-
-                        <div class="col-md-4" style = "text-align:center;">
+                        <div class="col-md-3" style = "text-align:center;">
 
                             <form action="/pemesanan/searchlokasi" method="GET">
 
@@ -156,10 +156,10 @@
                         </form>
 
                         </div>
+                        <br>
 
 
-
-
+{{--
                         <div class="col-md-4" style = "text-align:center;">
 
                             <form action="/pemesanan/searchopen" method="GET">
@@ -178,12 +178,56 @@
 
                         </form>
 
+                        </div> --}}
+
+
+
+
+                        <div class="col-md-3" style = "text-align:center;">
+
+                            <form action="/pemesanan/searchbuka" method="GET">
+
+                        <div class="form-group">
+                            <h4> <strong>Waktu Buka</strong> </h4>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="time" id = "searchbuka" name = "searchbuka" class = "form-control" >
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <button href="" class="btn btn-dark" style = "font-size:20px;padding-left:30px;padding-right:30px;" type = "submit" > Cari</button>
+                        </div>
+
+                        </form>
+
+                        </div>
+                        <br>
+
+
+
+                        <div class="col-md-3" style = "text-align:center;">
+
+                            <form action="/pemesanan/searchtutup" method="GET">
+
+                        <div class="form-group">
+                            <h4> <strong>Waktu Tutup</strong> </h4>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="time" id = "searchtutup" name = "searchtutup" class = "form-control" >
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <button href="" class="btn btn-dark" style = "font-size:20px;padding-left:30px;padding-right:30px;" type = "submit" > Cari</button>
+                        </div>
+
+                        </form>
+
                         </div>
 
 
-
-
-
+                        <br>
 
 
 
@@ -398,17 +442,17 @@
                     </td>
 
                     <td>
-                        
-                        
-                        
-                        
+
+
+
+
                         <!-- WARNING ! FORM KHUSUS-->
-                        
-                        
-                        
+
+
+
                         <!--<form method = "POST" action = "{{route('updatejam')}}" name = "status_buka">-->
                         <!--    @csrf-->
-                         
+
                         <!--<input name = "open" type = "hidden" id ="open" value = "hidden">-->
                         <!--<input type = "submit" name ="submit"> -->
                         <!--</form>-->
@@ -421,19 +465,19 @@
 
 
                         <!-- @if($pemesanans->open == "open")
-                  
+
                         <a href="" class = "btn btn-success" style = "border-radius:50px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">OPEN</a>
                         <br>
                         <a href="{{route('pemesananspesifik', $pemesanans->id)}}" class = "btn btn-dark" style = "font-size:20px; padding-left:40px; padding-right:40px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">ORDER</a>
                         @elseif($pemesanans->open == "close")
-                        
+
                         <a href="" class = "btn btn-danger" style = "border-radius:100px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">CLOSE</a>
                         <h4>Maaf Anda tidak bisa order</h4>
                         @endif
                         <br> -->
 
 
-                        <?php 
+                        <?php
                         date_default_timezone_set('Asia/Jakarta');
                         $time_default = date('H:i:s');
                         $time_buka = $pemesanans->waktu_buka;
@@ -443,10 +487,10 @@
                         ?>
 
                         <?php
-                        
+
                         if($time_buka < $time_default && $time_tutup > $time_default )
                         {
-                        
+
                             ?>
                          <a href="" class = "btn btn-success" style = "border-radius:50px;font-size:20px; padding-left:50px; padding-right:50px;padding-top:20px; padding-bottom:20px; margin-top:20px;margin-bottom:20px;">OPEN</a>
                         <br>
@@ -469,10 +513,10 @@
 
 
                        <?php } ?>
-                       
+
                        <br>
-                       
-                     <strong><span style = "font-size:16px;">Waktu Buka :</span></strong>  
+
+                     <strong><span style = "font-size:16px;">Waktu Buka :</span></strong>
                       <p>{{$pemesanans->waktu_buka}} - {{$pemesanans->waktu_tutup}} </p>
 
                     </td>
@@ -537,9 +581,9 @@
             <div class="container"><small>Copyright &copy; TAKPRINTIN 2021</small></div>
         </div>
 
-      
 
-        
+
+
 
 
     <script>
@@ -547,10 +591,10 @@
 //   document.forms['status_buka'].submit();
 // }
     </script>
-    
-    
-    
-    
+
+
+
+
         <script>
         function myFunction() {
           // Declare variables
@@ -559,7 +603,7 @@
           filter = input.value.toUpperCase();
           table = document.getElementById("myTable");
           tr = table.getElementsByTagName("tr");
-        
+
           // Loop through all table rows, and hide those who don't match the search query
           for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];

@@ -81,6 +81,9 @@ Route::resource('/pembeli', \App\Http\Controllers\PembeliController::class);
 Route::get('/pemesanan/searchnama','App\Http\Controllers\LandingController@searchnama')->middleware('auth');
 Route::get('/pemesanan/searchlokasi','App\Http\Controllers\LandingController@searchlokasi')->middleware('auth');
 Route::get('/pemesanan/searchopen','App\Http\Controllers\LandingController@searchopen')->middleware('auth');
+Route::get('/pemesanan/searchbuka','App\Http\Controllers\LandingController@searchbuka')->middleware('auth');
+Route::get('/pemesanan/searchtutup','App\Http\Controllers\LandingController@searchtutup')->middleware('auth');
+
 
 Route::get('/pemesanan', [App\Http\Controllers\LandingController::class, 'pemesanan'])->name('pemesanan')->middleware('auth');
 Route::get('/pemesanan/{id}', [App\Http\Controllers\LandingController::class, 'pemesananspesifik'])->name('pemesananspesifik')->middleware('auth');

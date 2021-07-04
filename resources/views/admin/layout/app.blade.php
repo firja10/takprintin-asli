@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | @yield('judul')</title>
-  
-  
-  
+
+
+
    <link rel="icon" type="image/x-icon" href="{{asset('assets/img/logotakprint.png')}}" />
-          
+
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -114,7 +114,7 @@
               </p>
             </a>
           </li>
-          
+
          <li class="nav-item">
             <a href="{{url('/admin/')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -161,6 +161,22 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a class = "nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>
+                   Logout
+                </p>
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                @csrf
+            </form>
+          </li>
+
+
+
 
 
         </ul>

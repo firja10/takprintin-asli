@@ -97,22 +97,68 @@ public function index()
             // $from = date('$tokos->waktu_buka');
             // $to = date('$tokos->waktu_tutup');
 
-        
-        
-        
-        
+
+
+
+
         $tokos = DB::table('tokos')->where('open','like',"%".$searchopen."%")->paginate();
-        
-        
+
+
         // $antara = Toko::whereBetween('waktu', [$from, $to])->get();
-        
-        
-               
+
+
+
         // $tokos = DB::table('tokos')->where($antara,'like',"%".$searchopen."%")->paginate();
 
         // $pembelis = Pembeli::findOrFail($id);
         return view('pemesans', ['tokos'=>$tokos]);
     }
+
+
+
+    public function searchbuka(Request $request)
+    {
+
+
+
+        $searchbuka = $request->get('searchbuka');
+
+        $tokos = DB::table('tokos')->where('waktu_buka','like',"%".$searchbuka."%")->paginate();
+
+
+        // $antara = Toko::whereBetween('waktu', [$from, $to])->get();
+
+
+
+        // $tokos = DB::table('tokos')->where($antara,'like',"%".$searchopen."%")->paginate();
+
+        // $pembelis = Pembeli::findOrFail($id);
+        return view('pemesans', ['tokos'=>$tokos]);
+    }
+
+
+
+    public function searchtutup(Request $request)
+    {
+
+
+
+        $searchtutup = $request->get('searchtutup');
+
+
+        $tokos = DB::table('tokos')->where('waktu_tutup','like',"%".$searchtutup."%")->paginate();
+
+
+        // $antara = Toko::whereBetween('waktu', [$from, $to])->get();
+
+
+
+        // $tokos = DB::table('tokos')->where($antara,'like',"%".$searchopen."%")->paginate();
+
+        // $pembelis = Pembeli::findOrFail($id);
+        return view('pemesans', ['tokos'=>$tokos]);
+    }
+
 
 
 
@@ -233,7 +279,7 @@ public function index()
 
 
 
-    
+
     public function updatepembayaran(Request $request, Pembeli $pembelis, $id)
     {
 
@@ -307,7 +353,7 @@ public function index()
     }
 
 
-    
+
     public function progressproduk(Pembeli $pembelis, $id)
     {
 
@@ -339,7 +385,7 @@ public function index()
             // 'progress' => 0,
             'progress' => 1,
             'bukti_progress' => $bukti_progressan,
-            
+
 
         ]);
 
@@ -354,7 +400,7 @@ public function index()
 
         $pembelis = Pembeli::where('id', $id)->update([
             'progress' => 2,
-            
+
 
         ]);
 
@@ -382,7 +428,7 @@ public function index()
 
         $pembelis = Pembeli::where('id', $id)->update([
             'bintang_rating' => $request['bintang_rating'],
-            
+
 
         ]);
 
@@ -434,7 +480,7 @@ public function index()
 
         $user = User::where('id', $id)->update([
             'is_admin' => 1,
-            
+
 
         ]);
 
@@ -463,52 +509,52 @@ public function index()
 
 
         public function updatejam(Request $request, Toko $tokos)
-        {      
+        {
         $tokos = new Toko;
             $from = date('$tokos->waktu_buka');
             $to = date('$tokos->waktu_tutup');
 
-            
+
             $sekarang = date('H:i:s');
             if($from < $sekarang && $to > $sekarang)
             {
                 // $tokos = Toko::where('id',$id)->update(
                 //     [
                 //         'open'=>'open',
-                        
+
                 //         ]);
-                
+
              $tokos =  DB::table('tokos')->update(array('open'=>1));
-                
-                
-                
+
+
+
             }
-            
+
             else {
                 // $tokos = Toko::where('id',$id)->update(
                 //     [
                 //         'open'=>'close',
-                        
+
                 //         ]);
-                
-                
+
+
                 $tokos =  DB::table('tokos')->update(array('open'=>0));
-                
-                
-                
+
+
+
             }
-            
+
                     //   $tokos = Toko::where('id',$id)->update(
                     // [
                     //     'open'=>$request['open'],
-                        
+
                     //     ]);
-            
-            
+
+
             return redirect('/pemesanan',compact('tokos'));
-            
-            
-            
+
+
+
         }
 
 
