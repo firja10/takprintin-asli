@@ -84,19 +84,23 @@
       </form>
 
       <div class="social-auth-links text-center mb-3">
-        <!--<p>- OR -</p>-->
-        <!--<a href="#" class="btn btn-block btn-primary">-->
-        <!--  <i class="fab fa-facebook mr-2"></i> Sign in using Facebook-->
-        <!--</a>-->
+        <p>- Atau -</p>
+        <a href="{{url('auth/facebook')}}" class="btn btn-block btn-primary">
+          <i class="fab fa-facebook mr-2"></i> Masuk Dengan Facebook
+        </a>
         <!--{{-- <a href="{{route('google.login')}}" class="btn btn-block btn-danger"> --}}-->
-        <!--    <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">-->
-        <!--  <i class="fab fa-google-plus mr-2"></i> Sign in using Google+-->
-        <!--</a>-->
+            <a href="{{url('auth/google')}}" class="btn btn-block btn-danger">
+          <i class="fab fa-google-plus mr-2"></i> Masuk Dengan Google+
+        </a>
+        
+               <a href="#" class="btn btn-block btn-dark">
+          <i class="fab fa-github-alt mr-2"></i> Masuk Dengan Github
+        </a>
       </div>
       <!-- /.social-auth-links -->
 
       <p class="mb-1">
-        <a href="forgot-password.html">Lupa Password</a>
+        <a href="{{ route('password.request') }}">Lupa Password</a>
       </p>
       <p class="mb-0">
         <a href="{{url('register')}}" class="text-center">Belum Punya Akun ? Silakan Daftar</a>

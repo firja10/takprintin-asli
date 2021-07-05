@@ -108,6 +108,16 @@ Route::get('/keranjang/{id}', [App\Http\Controllers\LandingController::class, 'k
 Route::post('/pemesanan', [App\Http\Controllers\LandingController::class, 'updatejam'])->name('updatejam');
 
 
+Route::get('auth/google',[\App\Http\Controllers\Auth\LoginController::class,'redirectToGoogle'])->name('google.login');
+
+Route::get('auth/google/callback',[\App\Http\Controllers\Auth\LoginController::class,'handleGoogleCallback'])->name('google.callback');
+
+
+Route::get('auth/facebook', [App\Http\Controllers\Auth\LoginController::class, 'facebook'])->name('facebook.login');
+Route::get('auth/facebook/callback', [App\Http\Controllers\Auth\LoginController::class, 'facebook_callback'])->name('facebook.callback');
+
+
+
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

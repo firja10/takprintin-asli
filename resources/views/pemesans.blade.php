@@ -278,7 +278,7 @@
         <h4> <strong>Jenis Kertas</strong> </h4>
          <input class="form-control" id="myInput" type="text" placeholder="Search..">
 
-     </div>
+     <!--</div>-->
 
      <div class="col-md-2" style = "text-align:center; margin-top:20px;">
 

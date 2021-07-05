@@ -23,7 +23,7 @@ public function handleGoogleCallback()
         // dd($user);
         $finduser = User::where('google_id',$user->getId())->first();
         // dd($user->id);
-        dd($user);
+        // dd($user);
         if($finduser){
             Auth::login($finduser);
             return redirect()->intended('dashboard');
@@ -44,7 +44,7 @@ public function handleGoogleCallback()
             ]);
             Auth::login($newUser);
             // return redirect()->intended('dashboard');
-            return redirect()->intended('dashboard');
+            return redirect('/');
         }
 
     } catch (\Throwable $th) {

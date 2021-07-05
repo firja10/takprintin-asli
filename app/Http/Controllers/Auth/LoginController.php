@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Laravel\Socialite\Facades\Socialite;
+// use App\Http\Controllers\Auth\User;
+use App\Models\User;
+use Hash;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -73,6 +78,136 @@ class LoginController extends Controller
         }
 
     }
+    
+    
+    
+    
+    
+        public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    
+    
+    public function handleGoogleCallback()
+    {
+        try{
+            $user = Socialite::driver('google')->user();
+        }catch (Exception $e) {
+            return redirect('auth/google');
+        }
+
+        $authUser = $this->CreateUser($user);
+        Auth::login($authUser, true);
+        // return redirect()->route('home');
+        return redirect('/');
+    }
+
+
+
+
+ public function facebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+ 
+    public function facebook_callback()
+    {
+        // try {
+     
+        //     $user = Socialite::driver('facebook')->stateless()->user();
+ 
+        //     /// lakukan pengecekan apakah facebook id nya sudah ada apa belum
+        //     $isUser = User::where('facebook_id', $user->id)->first();
+             
+        //     /// jika sudah ada, langsung login
+        //     if($isUser){
+                 
+        //         Auth::login($isUser);
+        //         return redirect('/home');
+ 
+        //     } 
+            
+            
+        //     else { /// jika belum ada, register baru
+ 
+        //         $createUser = new User;
+        //         $createUser->name =  $user->getName();
+ 
+        //         /// mendapatkan email dari facebook
+        //         if($user->getEmail() != null){
+        //             $createUser->email = $user->getEmail();
+        //             $createUser->email_verified_at = \Carbon\Carbon::now();
+        //         }  
+                 
+        //         /// tambahkan facebook id
+        //         $createUser->facebook_id = $user->getId();
+ 
+        //         /// membuat random password
+        //         $rand = rand(111111,999999);
+        //         $createUser->password = Hash::make($user->getName().$rand);
+ 
+        //         /// save
+        //         $createUser->save();
+                 
+        //         /// login
+        //         Auth::login($createUser);
+        //         return redirect('/');
+        //     }
+     
+        // } catch (Exception $exception) {
+        //     dd($exception->getMessage());
+        // }
+
+        try{
+            $user = Socialite::driver('facebook')->user();
+        }catch (Exception $e) {
+            return redirect('auth/facebook');
+        }
+
+        $authUser = $this->CreateUser($user);
+        Auth::login($authUser, true);
+        // return redirect()->route('home');
+        return redirect('/');
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function CreateUser($user)
+    {
+        $authUser = User::where('email', $user->email)->first();
+        if ($authUser) {
+            return $authUser;
+
+        }
+        return User::create([
+            'name'     => $user->name,
+            'email'    => $user->email,
+            'google_id'=>$user->id,
+            'facebook_id'=>$user->id,
+            'password'=>bcrypt('12345678'),
+        ]);
+    }
+
+    
+    
+    
+    
+    
 
 
 
