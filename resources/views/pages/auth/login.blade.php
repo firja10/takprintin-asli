@@ -93,7 +93,7 @@
           <i class="fab fa-google-plus mr-2"></i> Masuk Dengan Google+
         </a>
         
-               <a href="#" class="btn btn-block btn-dark">
+               <a href="{{url('auth/github')}}" class="btn btn-block btn-dark">
           <i class="fab fa-github-alt mr-2"></i> Masuk Dengan Github
         </a>
       </div>

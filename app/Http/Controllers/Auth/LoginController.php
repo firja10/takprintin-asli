@@ -180,6 +180,28 @@ class LoginController extends Controller
 
 
 
+        public function Github()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+    
+    
+    
+
+  public function handleGithubCallback()
+    {
+        try{
+            $user = Socialite::driver('github')->user();
+        }catch (Exception $e) {
+            return redirect('auth/github');
+        }
+
+        $authUser = $this->CreateUser($user);
+        Auth::login($authUser, true);
+        // return redirect()->route('home');
+        return redirect('/');
+    }
+
 
 
 
@@ -199,6 +221,7 @@ class LoginController extends Controller
             'email'    => $user->email,
             'google_id'=>$user->id,
             'facebook_id'=>$user->id,
+            'github_id'=>$user->id,
             'password'=>bcrypt('12345678'),
         ]);
     }

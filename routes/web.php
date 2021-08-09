@@ -103,7 +103,7 @@ Route::get('/keranjang', [App\Http\Controllers\LandingController::class, 'keranj
 Route::get('/keranjang/{id}', [App\Http\Controllers\LandingController::class, 'keranjangspesifik'])->name('keranjangspesifik');
 
 
-//WARNING, KHUSUS !!
+//LOGIN GOOGLE
 
 Route::post('/pemesanan', [App\Http\Controllers\LandingController::class, 'updatejam'])->name('updatejam');
 
@@ -111,6 +111,15 @@ Route::post('/pemesanan', [App\Http\Controllers\LandingController::class, 'updat
 Route::get('auth/google',[\App\Http\Controllers\Auth\LoginController::class,'redirectToGoogle'])->name('google.login');
 
 Route::get('auth/google/callback',[\App\Http\Controllers\Auth\LoginController::class,'handleGoogleCallback'])->name('google.callback');
+
+//LOGIN GITHUB
+
+
+Route::get('auth/github',[\App\Http\Controllers\Auth\LoginController::class,'Github'])->name('github.login');
+
+Route::get('auth/github/callback',[\App\Http\Controllers\Auth\LoginController::class,'handleGithubCallback'])->name('github.callback');
+
+
 
 
 Route::get('auth/facebook', [App\Http\Controllers\Auth\LoginController::class, 'facebook'])->name('facebook.login');
@@ -144,3 +153,7 @@ Route::get('admin/informasi-pembeli/{id}/destroy', [\App\Http\Controllers\Landin
 
 
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

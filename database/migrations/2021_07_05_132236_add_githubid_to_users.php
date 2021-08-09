@@ -15,6 +15,7 @@ class AddGithubidToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->string('github_id')->after('facebook_id')->nullable();
         });
     }
 
@@ -27,6 +28,7 @@ class AddGithubidToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             //
+            $table->dropColumn('github_id');
         });
     }
 }

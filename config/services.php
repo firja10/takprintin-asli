@@ -43,4 +43,11 @@ return [
     'redirect'      => env('FB_URL'),
 ],
 
+    // Sosial Media GITHUB
+    'github' => [
+    'client_id'     => env('GITHUB_ID'),
+    'client_secret' => env('GITHUB_SECRET'),
+    'redirect'      => env('GITHUB_URL'),
+],
+
 ];
